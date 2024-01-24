@@ -74,4 +74,4 @@ wb <- createWorkbook()
 
 # Move onto the next row below the table
 
-saveWorkbook(wb, "mid-year-population-summary-2022-ex-1-solution.xlsx", overwrite = TRUE)
+saveWorkbook(wb, "mid-year-population-summary-2022-ex-1.xlsx", overwrite = TRUE)
