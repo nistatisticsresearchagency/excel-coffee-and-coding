@@ -32,8 +32,9 @@ by_age <- data %>%
   summarise(VALUE = sum(VALUE)) %>%
   pivot_wider(names_from = Year, values_from = VALUE)
 
-# Create a new workbook
-wb <- createWorkbook()
+# Create a new workbook, give it the title "Population Estimates" and the subject "Demography Statistics" 
+wb <- createWorkbook(title = "Population Estimates",
+                     subject = "Demography Statistics")
 
 # Name sheet 1 and add to workbook
 sheet1 <- "Population Summary"
@@ -42,49 +43,35 @@ addWorksheet(wb, sheet1)
 # Set default font option
 modifyBaseFont(wb, fontSize = 12, fontName = "Arial")
 
-# Think of the variable 'row' as an imaginary cursor moving down the page
-# as we write content to the worksheet
-
-# Declare row on which you want to start writing content
-row <- 1
-
 # Write a title for the sheet
 writeData(wb, sheet1,
           "2022 Mid Year Population Summaries",
-          startRow = row)
+          startRow = 1)
 
 # Change the title to size 14 and bold
-addStyle(wb, sheet1, style_page_title, rows = row, cols = 1)
+addStyle(wb, sheet1, style_page_title, rows = 1, cols = 1)
 
-# Move on to the next row
-row <- row + 1
 
 # Write a title for the table
 writeData(wb, sheet1,
           "Population by Age Group",
-          startRow = row)
+          startRow = 2)
 
 # Change the title to bold
-addStyle(wb, sheet1, style_table_title, rows = row, cols = 1)
-
-# Move on to the next row
-row <- row + 1
+addStyle(wb, sheet1, style_table_title, rows = 2, cols = 1)
 
 # Write the data frame by_age out as a table
 writeDataTable(wb, sheet1,
                by_age,
-               startRow = row,
+               startRow = 4,
                tableStyle = "none",
                withFilter = FALSE,
                headerStyle = style_table_header,
                tableName = "pop_by_age")
 
 # Change the first row heading back to aligned left
-addStyle(wb, sheet1, style_table_title, rows = row, cols = 1)
+addStyle(wb, sheet1, style_table_title, rows = 4, cols = 1)
 # Change the figures to have comma formatting
-addStyle(wb, sheet1, style_table_figures, rows = (row + 1):(row + nrow(by_age) + 1), cols = 2:(ncol(by_age)), gridExpand = TRUE)
-
-# Move onto the next row below the table
-row <- row + nrow(by_age) + 2
+addStyle(wb, sheet1, style_table_figures, rows = 5:11, cols = 2:23, gridExpand = TRUE)
 
 saveWorkbook(wb, "mid-year-population-summary-2022-ex-1-solution.xlsx", overwrite = TRUE)

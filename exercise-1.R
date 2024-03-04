@@ -17,8 +17,7 @@ data <- read.csv("mid-year-population-estimates-2022.csv") %>%
                                  Age < 55 ~ "45-54",
                                  TRUE ~ "55 and over"),
          # Apply ordering of grouped age variable
-         
-         ) %>%
+         `Age group` = factor(`Age group`, levels = c("Under 25", "25-34", "35-44", "45-54", "55 and over"))) %>%
   # Use select to keep and rename some variables
   select(Year,
          `Local Government District` = Local.Government.District,
@@ -32,46 +31,26 @@ by_age <- data %>%
   summarise(VALUE = sum(VALUE)) %>%
   pivot_wider(names_from = Year, values_from = VALUE)
 
-# Create a new workbook
+# Create a new workbook, give it the title "Population Estimates" and the subject "Demography Statistics" 
 wb <- createWorkbook()
 
 # Name sheet 1 and add to workbook
 
-
 # Set default font option
-
-
-# Think of the variable 'row' as an imaginary cursor moving down the page
-# as we write content to the worksheet
-
-# Declare row on which you want to start writing content
-
 
 # Write a title for the sheet
 
-
 # Change the title to size 14 and bold
-
-
-# Move on to the next row
-
 
 # Write a title for the table
 
-
 # Change the title to bold
 
-
-# Move on to the next row
-
-
 # Write the data frame by_age out as a table
-
 
 # Change the first row heading back to aligned left
 
 # Change the figures to have comma formatting
 
-# Move onto the next row below the table
 
 saveWorkbook(wb, "mid-year-population-summary-2022-ex-1.xlsx", overwrite = TRUE)
