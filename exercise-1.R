@@ -1,3 +1,8 @@
+
+if (!require(dplyr)) install.packages("dplyr")
+if (!require(tidyr)) install.packages("tidyr")
+if (!require(openxlsx)) install.packages("openxlsx")
+
 library(dplyr)
 library(tidyr)
 library(openxlsx)

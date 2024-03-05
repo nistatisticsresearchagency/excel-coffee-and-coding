@@ -1,3 +1,8 @@
+
+if (!require(dplyr)) install.packages("dplyr")
+if (!require(tidyr)) install.packages("tidyr")
+if (!require(openxlsx)) install.packages("openxlsx")
+
 library(dplyr)
 library(tidyr)
 library(openxlsx)
@@ -63,15 +68,15 @@ addStyle(wb, sheet1, style_table_title, rows = 2, cols = 1)
 # Write the data frame by_age out as a table
 writeDataTable(wb, sheet1,
                by_age,
-               startRow = 4,
+               startRow = 3,
                tableStyle = "none",
                withFilter = FALSE,
                headerStyle = style_table_header,
                tableName = "pop_by_age")
 
 # Change the first row heading back to aligned left
-addStyle(wb, sheet1, style_table_title, rows = 4, cols = 1)
+addStyle(wb, sheet1, style_table_title, rows = 3, cols = 1)
 # Change the figures to have comma formatting
-addStyle(wb, sheet1, style_table_figures, rows = 5:11, cols = 2:23, gridExpand = TRUE)
+addStyle(wb, sheet1, style_table_figures, rows = 4:8, cols = 2:23, gridExpand = TRUE)
 
 saveWorkbook(wb, "mid-year-population-summary-2022-ex-1-solution.xlsx", overwrite = TRUE)
