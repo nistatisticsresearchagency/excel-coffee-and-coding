@@ -7,7 +7,7 @@ library(dplyr)
 library(tidyr)
 library(openxlsx)
 
-# 5. Source the styles sheet
+# 6. Source the styles sheet
 
 # CSV file obtained from NISRA data portal https://data.nisra.gov.uk/table/MYE01T09
 
@@ -36,26 +36,29 @@ by_age <- data %>%
   summarise(VALUE = sum(VALUE)) %>%
   pivot_wider(names_from = Year, values_from = VALUE)
 
-# Create a new workbook, give it the title "Population Estimates" and the subject "Demography Statistics" 
+# 1. Create a new workbook, 
+# give it the title "Population Estimates" 
+# and the subject "Demography Statistics" 
 wb <- createWorkbook()
 
-# 1. Name sheet 1 and add to workbook
+# 2. Name sheet 1 and add to workbook
 
-# 6. Set default font option
+# 7. Set default font option
 
-# 2. Write a title for the sheet
+# 3. Write a title for the sheet
 
-# 7. Change the title to size 14 and bold
+# 8. Change the title to size 14 and bold
 
-# 3. Write a title for the table
+# 4. Write a title for the table
 
-# 8. Change the title to bold
+# 9. Change the title to bold
 
-# 4. Write the data frame by_age out as a table
+# 5. Write the data frame by_age out as a table
 
-# 9. Change the first row heading back to aligned left
+# 10. Change the first row heading back to aligned left
 
-# 10. Change the figures to have comma formatting
+# 11. Change the figures to have comma formatting
 
 
 saveWorkbook(wb, "mid-year-population-summary-2022-ex-1.xlsx", overwrite = TRUE)
+openXL("mid-year-population-summary-2022-ex-1.xlsx")

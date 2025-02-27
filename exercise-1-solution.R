@@ -77,6 +77,7 @@ writeDataTable(wb, sheet1,
 # Change the first row heading back to aligned left
 addStyle(wb, sheet1, style_table_title, rows = 3, cols = 1)
 # Change the figures to have comma formatting
-addStyle(wb, sheet1, style_table_figures, rows = 4:8, cols = 2:23, gridExpand = TRUE)
+addStyle(wb, sheet1, style_table_figures, rows = 4:8, cols = 2:ncol(by_age), gridExpand = TRUE)
 
 saveWorkbook(wb, "mid-year-population-summary-2022-ex-1-solution.xlsx", overwrite = TRUE)
+openXL("mid-year-population-summary-2022-ex-1-solution.xlsx")

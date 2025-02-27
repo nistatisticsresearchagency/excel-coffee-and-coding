@@ -134,3 +134,4 @@ setColWidths(wb, sheet1,
 # last on the worksheet.
 
 saveWorkbook(wb, "mid-year-population-summary-2022-further-exercise.xlsx", overwrite = TRUE)
+openXL("mid-year-population-summary-2022-further-exercise.xlsx")
