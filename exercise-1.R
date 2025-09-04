@@ -12,7 +12,7 @@ library(openxlsx)
 # CSV file obtained from NISRA data portal https://data.nisra.gov.uk/table/MYE01T09
 
 # Data read in as csv
-data <- read.csv("mid-year-population-estimates-2022.csv") %>%
+data <- read.csv("https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/MYE01T09/CSV/1.0/") %>% 
   # Total rows removed to avoid double counting
   filter(Sex != "All" & Local.Government.District != "Northern Ireland") %>%
   # Create a new grouped age variable
@@ -49,7 +49,8 @@ wb <- createWorkbook()
 
 # 8. Change the title to size 14 and bold
 
-# 4. Write a title for the table
+# 4. Extract most recent year from data and
+#    write a title for the table
 
 # 9. Change the title to bold
 
@@ -60,5 +61,5 @@ wb <- createWorkbook()
 # 11. Change the figures to have comma formatting
 
 
-saveWorkbook(wb, "mid-year-population-summary-2022-ex-1.xlsx", overwrite = TRUE)
-openXL("mid-year-population-summary-2022-ex-1.xlsx")
+saveWorkbook(wb, "mid-year-population-summary-ex-1.xlsx", overwrite = TRUE)
+openXL("mid-year-population-summary-ex-1.xlsx")

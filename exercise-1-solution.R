@@ -13,7 +13,7 @@ source("styles.R")
 # CSV file obtained from NISRA data portal https://data.nisra.gov.uk/table/MYE01T09
 
 # Data read in as csv
-data <- read.csv("mid-year-population-estimates-2022.csv") %>%
+data <- read.csv("https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/MYE01T09/CSV/1.0/") %>% 
   # Total rows removed to avoid double counting
   filter(Sex != "All" & Local.Government.District != "Northern Ireland") %>%
   # Create a new grouped age variable
@@ -50,16 +50,20 @@ modifyBaseFont(wb, fontSize = 12, fontName = "Arial")
 
 # Write a title for the sheet
 writeData(wb, sheet1,
-          "2022 Mid Year Population Summaries",
+          "Mid Year Population Summaries",
           startRow = 1)
 
 # Change the title to size 14 and bold
 addStyle(wb, sheet1, style_page_title, rows = 1, cols = 1)
 
 
-# Write a title for the table
+# Extract most recent year from data and
+# write a title for the table
+
+current_year <- max(data$Year)
+
 writeData(wb, sheet1,
-          "Population by Age Group",
+          paste("Population by Age Group - 2001 to", current_year),
           startRow = 2)
 
 # Change the title to bold
@@ -79,5 +83,5 @@ addStyle(wb, sheet1, style_table_title, rows = 3, cols = 1)
 # Change the figures to have comma formatting
 addStyle(wb, sheet1, style_table_figures, rows = 4:8, cols = 2:ncol(by_age), gridExpand = TRUE)
 
-saveWorkbook(wb, "mid-year-population-summary-2022-ex-1-solution.xlsx", overwrite = TRUE)
-openXL("mid-year-population-summary-2022-ex-1-solution.xlsx")
+saveWorkbook(wb, "mid-year-population-summary-ex-1-solution.xlsx", overwrite = TRUE)
+openXL("mid-year-population-summary-ex-1-solution.xlsx")

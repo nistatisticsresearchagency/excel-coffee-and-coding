@@ -8,7 +8,7 @@ source("styles.R")
 # CSV file obtained from NISRA data portal https://data.nisra.gov.uk/table/MYE01T09
 
 # Data read in as csv
-data <- read.csv("mid-year-population-estimates-2022.csv") %>%
+data <- read.csv("https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/MYE01T09/CSV/1.0/") %>% 
   # Total rows removed to avoid double counting
   filter(Sex != "All" & Local.Government.District != "Northern Ireland") %>%
   # Create a new grouped age variable
@@ -58,7 +58,7 @@ cursor <- 1
 
 # Write a title for the sheet
 writeData(wb, sheet1,
-          "2022 Mid Year Population Summaries",
+          "Mid Year Population Summaries",
           startRow = cursor)
 
 # Change the title to size 14 and bold
@@ -133,5 +133,5 @@ setColWidths(wb, sheet1,
 # See if you re-order the tables in the worksheet. By moving the code for the by_age table so that it appears
 # last on the worksheet.
 
-saveWorkbook(wb, "mid-year-population-summary-2022-further-exercise.xlsx", overwrite = TRUE)
-openXL("mid-year-population-summary-2022-further-exercise.xlsx")
+saveWorkbook(wb, "mid-year-population-summary-further-exercise.xlsx", overwrite = TRUE)
+openXL("mid-year-population-summary-further-exercise.xlsx")
